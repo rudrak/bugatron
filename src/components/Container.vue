@@ -1,7 +1,11 @@
 <template>
     <div class="container">
         <div class="row">
-            <CreateBtn />
+            <div class="col"><CreateBtn /></div>
+            <div class="input-field col s2 search">
+                <input type="text" placeholder="search" />
+
+            </div>
         </div>
         <div class="row">
             <BugList />
@@ -23,6 +27,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.search {
+    float: right;
+}
+
 .container {
     margin-top: 10px;
 }

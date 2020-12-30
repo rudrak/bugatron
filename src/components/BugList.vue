@@ -23,7 +23,7 @@
 export default {
     name: "BugList",
     components: {
-        BugEditor,
+        //BugEditor,
     },
     data: () => {
         return {
