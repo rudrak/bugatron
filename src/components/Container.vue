@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col"><CreateBtn /></div>
-            <div class="input-field col s2 search">
-                <input type="text" placeholder="search" />
+            <div class="input-field col s3 search">
+                <input type="text" placeholder="Search" />
 
             </div>
         </div>

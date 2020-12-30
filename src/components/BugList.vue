@@ -34,7 +34,7 @@ export default {
                     details:
                         "UI work needs to be over. But it is not done yet.",
                     state: "CLOSED",
-                    owner: "Birju",
+                    owner: "User1",
                 },
                 {
                     id: 2,
@@ -42,7 +42,7 @@ export default {
                     details:
                         "UI work needs to be over. But it is not done yet.",
                     state: "IN-PROGRESS",
-                    owner: "Birju",
+                    owner: "User2",
                 },
                 {
                     id: 3,
@@ -50,7 +50,7 @@ export default {
                     details:
                         "UI work needs to be over. But it is not done yet.",
                     state: "OPEN",
-                    owner: "Birju",
+                    owner: "User1",
                 },
             ],
         };
