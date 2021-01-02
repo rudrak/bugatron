@@ -1,6 +1,11 @@
 <template>
     <div class="bugList">
-        <div v-for="bug in bugs" :key="bug.id" class="bug">
+        <div
+            v-for="bug in bugs"
+            :key="bug.id"
+            class="bug"
+            @click="onSelectBug(bug.id)"
+        >
             <div class="row">
                 <input type="checkbox" />
                 <span class="title">{{ bug.title }}</span>
@@ -12,21 +17,24 @@
                     >{{ bug.owner }}</span
                 >
             </div>
-            <!-- <BugEditor /> -->
+            <div v-show="selected === bug.id">
+                <BugEditor :bug="bug" :onClose="onClose.bind(this)" />
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-//import BugEditor from "./BugEditor.vue";
+import BugEditor from "./BugEditor.vue";
 
 export default {
     name: "BugList",
     components: {
-        //BugEditor,
+        BugEditor,
     },
     data: () => {
         return {
+            selected: null,
             bugs: [
                 {
                     id: 1,
@@ -54,6 +62,15 @@ export default {
                 },
             ],
         };
+    },
+    methods: {
+        onSelectBug(bugId) {
+            this.selected = bugId;
+        },
+
+        onClose() {
+            this.selected = null;
+        },
     },
 };
 </script>

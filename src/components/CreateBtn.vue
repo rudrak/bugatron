@@ -1,6 +1,9 @@
 <template>
     <div>
-        <a class="waves-effect waves-light btn-small createBtn" v-on:click="addTicket">
+        <a
+            class="waves-effect waves-light btn-small createBtn"
+            v-on:click="addTicket"
+        >
             <i class="material-icons right">add</i>
             <b>Create</b>
         </a>
