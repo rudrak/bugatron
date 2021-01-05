@@ -7,11 +7,11 @@
             @click="onSelectBug(bug.id)"
         >
             <div class="row">
-                <input type="checkbox" />
                 <span class="title">{{ bug.title }}</span>
                 <span class="state">{{
                     StateLabelsMap[StateTypes[bug.state]]
                 }}</span>
+                <span class="deleteIcon" @click.stop="onDelete(bug.id)"><i class="material-icons">delete</i></span>
             </div>
             <div class="row">
                 <span
@@ -35,7 +35,7 @@ export default {
     components: {
         BugEditor,
     },
-    props: ["bugs", "selected"],
+    props: ["bugs", "selected", "onDelete"],
     methods: {
         onSelectBug(bugId) {
             this.selected = bugId;
@@ -87,5 +87,10 @@ export default {
 
 .title {
     font-size: 14px;
+}
+
+.deleteIcon {
+    float: right;
+    cursor: default;
 }
 </style>

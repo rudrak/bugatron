@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col"><CreateBtn /></div>
+            <div class="col"><CreateBtn :onCreate="onCreate"/></div>
             <div class="input-field col s3 search">
                 <input type="text" placeholder="Search" @keyup.enter="searchBugs" v-model="searchText"/>
             </div>
         </div>
         <div class="row">
-            <BugList :bugs="currentBugs" :selected="selected" />
+            <BugList :bugs="currentBugs" :selected="selected" :onDelete="onDelete" />
         </div>
     </div>
 </template>
@@ -15,6 +15,8 @@
 <script>
 import CreateBtn from "./CreateBtn.vue";
 import BugList from "./BugList.vue";
+import { v4 as uuidv4 } from 'uuid';
+
 export default {
     name: "Container",
     components: {
@@ -64,6 +66,24 @@ export default {
                 return this.searchText ? title.indexOf(this.searchText.toLowerCase()) > -1 : true;
             });
             this.currentBugs = bugList;
+        },
+        onCreate() {
+            const newUUID = uuidv4();
+
+            const newBug = {
+                id: newUUID,
+                title: '',
+                details: '',
+                state: "__OPEN__",
+                owner: ''
+            };
+
+            this.allBugs.push(newBug);
+            this.selected = newUUID;
+        },
+        onDelete(bugId) {
+            this.allBugs = this.allBugs.filter(bug => bug.id !== bugId);
+            this.currentBugs = this.currentBugs.filter(bug => bug.id !== bugId);
         }
     },
 };

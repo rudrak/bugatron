@@ -2,7 +2,7 @@
     <div class="modalContainer">
         <div class="bugModal modal-content">
             <div class="header">
-                {{ bug.owner }}
+                Bug Editor
                 <div class="closeBtn" @click.stop="localClose">
                     <i class="material-icons">close</i>
                 </div>
@@ -42,6 +42,17 @@
                         <label for="bug.id - 'bug - details'">Details</label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-field s12">
+                        <input
+                            v-model="bug.owner"
+                            :id="bug.id - 'bug-owner'"
+                            type="text"
+                        />
+                        <label for="${bug.id}-bug-owner`">Owner</label>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

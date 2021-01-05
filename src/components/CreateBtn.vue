@@ -2,7 +2,7 @@
     <div>
         <a
             class="waves-effect waves-light btn-small createBtn"
-            v-on:click="addTicket"
+            v-on:click="onCreate"
         >
             <i class="material-icons right">add</i>
             <b>Create</b>
@@ -13,14 +13,7 @@
 <script>
 export default {
     name: "CreateBtn",
-    props: {
-        msg: String,
-    },
-    methods: {
-        addTicket: () => {
-            console.log("blah");
-        },
-    },
+    props: ["onCreate"],
 };
 </script>
 
