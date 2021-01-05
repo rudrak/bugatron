@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="row">
-            <BugList />
+            <BugList :bugs="bugs" :selected="selected" />
         </div>
     </div>
 </template>
@@ -20,6 +20,37 @@ export default {
     components: {
         CreateBtn,
         BugList,
+    },
+    data: () => {
+        return {
+            selected: null,
+            bugs: [
+                {
+                    id: 1,
+                    title: "UI Does not work",
+                    details:
+                        "UI work needs to be over. But it is not done yet.",
+                    state: "__CLOSED__",
+                    owner: "User1",
+                },
+                {
+                    id: 2,
+                    title: "Styles need some work",
+                    details:
+                        "UI work needs to be over. But it is not done yet.",
+                    state: "__INPROGRESS__",
+                    owner: "User2",
+                },
+                {
+                    id: 3,
+                    title: "Quick prototyping",
+                    details:
+                        "UI work needs to be over. But it is not done yet.",
+                    state: "__OPEN__",
+                    owner: "User1",
+                },
+            ],
+        };
     },
 };
 </script>

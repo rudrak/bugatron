@@ -9,7 +9,9 @@
             <div class="row">
                 <input type="checkbox" />
                 <span class="title">{{ bug.title }}</span>
-                <span class="state">{{ bug.state }}</span>
+                <span class="state">{{
+                    StateLabelsMap[StateTypes[bug.state]]
+                }}</span>
             </div>
             <div class="row">
                 <span
@@ -26,43 +28,14 @@
 
 <script>
 import BugEditor from "./BugEditor.vue";
+import { StateTypes, StateLabelsMap } from "../constants/BugConstants";
 
 export default {
     name: "BugList",
     components: {
         BugEditor,
     },
-    data: () => {
-        return {
-            selected: null,
-            bugs: [
-                {
-                    id: 1,
-                    title: "UI Does not work",
-                    details:
-                        "UI work needs to be over. But it is not done yet.",
-                    state: "CLOSED",
-                    owner: "User1",
-                },
-                {
-                    id: 2,
-                    title: "Styles need some work",
-                    details:
-                        "UI work needs to be over. But it is not done yet.",
-                    state: "IN-PROGRESS",
-                    owner: "User2",
-                },
-                {
-                    id: 3,
-                    title: "Quick prototyping",
-                    details:
-                        "UI work needs to be over. But it is not done yet.",
-                    state: "OPEN",
-                    owner: "User1",
-                },
-            ],
-        };
-    },
+    props: ["bugs", "selected"],
     methods: {
         onSelectBug(bugId) {
             this.selected = bugId;
@@ -71,6 +44,12 @@ export default {
         onClose() {
             this.selected = null;
         },
+    },
+    data: () => {
+        return {
+            StateLabelsMap: Object.freeze(StateLabelsMap),
+            StateTypes: Object.freeze(StateTypes),
+        };
     },
 };
 </script>
@@ -103,6 +82,7 @@ export default {
     color: #fff;
     line-height: 22px;
     margin-left: 5px;
+    text-transform: uppercase;
 }
 
 .title {
