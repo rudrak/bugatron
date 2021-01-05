@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col"><CreateBtn /></div>
             <div class="input-field col s3 search">
-                <input type="text" placeholder="Search" />
+                <input type="text" placeholder="Search" @keyup.enter="searchBugs" v-model="searchText"/>
             </div>
         </div>
         <div class="row">
-            <BugList :bugs="bugs" :selected="selected" />
+            <BugList :bugs="currentBugs" :selected="selected" />
         </div>
     </div>
 </template>
@@ -24,7 +24,9 @@ export default {
     data: () => {
         return {
             selected: null,
-            bugs: [
+            searchText: null,
+            currentBugs: [],
+            allBugs: [
                 {
                     id: 1,
                     title: "UI Does not work",
@@ -51,6 +53,18 @@ export default {
                 },
             ],
         };
+    },
+    created: function() {
+        this.currentBugs = this.allBugs;
+    },
+    methods: {
+        searchBugs() {
+            const bugList = this.allBugs.filter(bug => {
+                const title = bug.title.toLowerCase();
+                return this.searchText ? title.indexOf(this.searchText.toLowerCase()) > -1 : true;
+            });
+            this.currentBugs = bugList;
+        }
     },
 };
 </script>
